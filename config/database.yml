@@ -1,0 +1,21 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  url: postgres://ws:123456@localhost:5432/ws_development
+  min_messages: WARNING
+
+
+test:
+  <<: *default
+  url: postgres://ws:123456@localhost:5432/ws_test
+  min_messages: PANIC
+
+
+production:
+  <<: *default
+  # use DATABASE_URL env var values
